@@ -32,3 +32,22 @@ CREATE TABLE estado_insumos(
 		FOREIGN KEY(id_precio_ingreso) REFERENCES precio_ingreso(id)
         
 );
+
+-- changeset gustavo:4
+-- comment: Se insertan datos de prueba
+INSERT INTO insumos(proveedor,marca,producto,comentario) VALUE 
+("Papa noel","saltin","galletas","Preuba 1"),("Supermercado","Doña arepa","harina","Prueba 2");
+
+
+-- changeset gustavo:5
+-- comment: Se insertan datos de prueba
+INSERT INTO precio_ingreso(precio,comentario) VALUE 
+("500","Prueba 1"),("700","Prueba 1"),("800","Prueba 1"),("900","Prueba 1");
+
+-- changeset gustavo:6
+-- comment: Se insertan datos de prueba
+INSERT INTO estado_insumos(cantidad,fecha,accion,comentario,id_insumos,id_precio_ingreso) VALUE 
+("40","2015-12-17",true,"Jejejej","2","1"),
+("30","2015-12-19",false,"Jejejej","2","1"),
+("60","2015-12-29",true,"Jejejej","1","1");
+
