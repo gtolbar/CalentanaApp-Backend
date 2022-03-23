@@ -39,7 +39,7 @@ public class EstadoInsumo {
 	private Insumo idInsumo;
 	
 	@ManyToOne
-	@JoinColumn(name="id_insumos")
+	@JoinColumn(name="id_precio_ingreso")
 	private PrecioIngreso id_precio_ingreso;
 
 }
