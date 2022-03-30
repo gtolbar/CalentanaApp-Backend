@@ -1,9 +1,13 @@
 package com.calentanaApp.service.impl;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,9 +52,11 @@ public class EstadoInsumoServiceImpl extends CRUDImpl<EstadoInsumo, Integer> imp
 	@Override
 	public byte[] generarReporte() {
 		byte[] data = null;
+		Month mes = LocalDate.now().getMonth();
+		String nombre = mes.getDisplayName(TextStyle.FULL, new Locale("es", "ES"));
 		//poblar parametros
 		Map<String, Object> parametros = new HashMap<String, Object>();
-		parametros.put("txt_mes", "Marzo");
+		parametros.put("txt_mes", nombre.toUpperCase().charAt(0)+nombre.substring(1, nombre.length()).toLowerCase());
 		
 		try {
 			File file = new ClassPathResource("/reports/InformeCalentana.jasper").getFile();
