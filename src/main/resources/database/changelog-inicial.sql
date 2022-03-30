@@ -12,7 +12,7 @@ CREATE TABLE insumos(
 
 -- changeset gustavo:2
 -- comment: Se crea tabla de precio entrada primera vez
-CREATE TABLE precio_ingreso(
+CREATE TABLE precio_ingresos(
 	id INT PRIMARY KEY  AUTO_INCREMENT,
 	precio INT UNSIGNED NOT NULL,
     comentario VARCHAR(255)  
@@ -28,8 +28,8 @@ CREATE TABLE estado_insumos(
 	comentario VARCHAR(255),
 	id_insumos INT NOT NULL,
 		FOREIGN KEY(id_insumos) REFERENCES insumos(id),
-	id_precio_ingreso INT NOT NULL,
-		FOREIGN KEY(id_precio_ingreso) REFERENCES precio_ingreso(id)
+	id_precio_ingresos INT NOT NULL,
+		FOREIGN KEY(id_precio_ingresos) REFERENCES precio_ingresos(id)
         
 );
 
@@ -41,12 +41,12 @@ INSERT INTO insumos(proveedor,marca,producto,comentario) VALUE
 
 -- changeset gustavo:5
 -- comment: Se insertan datos de prueba
-INSERT INTO precio_ingreso(precio,comentario) VALUE 
+INSERT INTO precio_ingresos(precio,comentario) VALUE 
 ("500","Prueba 1"),("700","Prueba 1"),("800","Prueba 1"),("900","Prueba 1");
 
 -- changeset gustavo:6
 -- comment: Se insertan datos de prueba
-INSERT INTO estado_insumos(cantidad,fecha,accion,comentario,id_insumos,id_precio_ingreso) VALUE 
+INSERT INTO estado_insumos(cantidad,fecha,accion,comentario,id_insumos,id_precio_ingresos) VALUE 
 ("40","2015-12-17",true,"Jejejej","2","1"),
 ("30","2015-12-19",false,"Jejejej","2","1"),
 ("60","2015-12-29",true,"Jejejej","1","1");

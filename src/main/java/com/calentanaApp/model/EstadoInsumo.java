@@ -36,10 +36,10 @@ public class EstadoInsumo {
 	
 	@ManyToOne
 	@JoinColumn(name="id_insumos")
-	private Insumo idInsumo;
+	private Insumo idInsumos;
 	
 	@ManyToOne
-	@JoinColumn(name="id_precio_ingreso")
-	private PrecioIngreso idPrecioIngreso;
+	@JoinColumn(name="id_precio_ingresos")
+	private PrecioIngreso idPrecioIngresos;
 
 }

@@ -7,7 +7,7 @@ import com.calentanaApp.model.EstadoInsumo;
 
 public interface IEstadoInsumoService extends ICRUD<EstadoInsumo, Integer>{
 
-	List<ConsultaPdfDTO> listarVariablesPDF();
+	List<ConsultaPdfDTO> listarResumen();
 	
 	byte[] generarReporte();
 

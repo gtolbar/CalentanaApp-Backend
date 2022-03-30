@@ -1,6 +1,7 @@
 package com.calentanaApp.service.impl;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,18 +31,31 @@ public class EstadoInsumoServiceImpl extends CRUDImpl<EstadoInsumo, Integer> imp
 	protected IGenericRepo<EstadoInsumo, Integer> getRepo() {
 		return repo;
 	}
-
+	
+	@Override
+	public List<ConsultaPdfDTO> listarResumen(){
+		List<ConsultaPdfDTO> consultas = new ArrayList<>();
+		repo.listarResumen().forEach(x->{
+			ConsultaPdfDTO cs =new ConsultaPdfDTO();
+			cs.setCantidad(Integer.parseInt(String.valueOf(x[0])));
+			cs.setFecha(String.valueOf(x[1]));
+			consultas.add(cs);
+		});
+		return consultas; 
+	}
+	
+	
 	@Override
 	public byte[] generarReporte() {
-		System.out.println(this.listarVariablesPDF());
 		byte[] data = null;
 		//poblar parametros
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("txt_mes", "Marzo");
-
+		
 		try {
 			File file = new ClassPathResource("/reports/InformeCalentana.jasper").getFile();
-			JasperPrint print = JasperFillManager.fillReport(file.getPath(), parametros, new JRBeanCollectionDataSource(this.listarVariablesPDF()));
+			//System.out.println(System.getProperty("user.dir") + "src\\main\\resources\\reports\\Holamundo.jasper");
+			JasperPrint print = JasperFillManager.fillReport(file.getPath(), parametros, new JRBeanCollectionDataSource(this.listarResumen()));
 			data = JasperExportManager.exportReportToPdf(print);
 			// mitocode jasperreports | excel, pdf, ppt, word, csv
 		} catch (Exception e) {
@@ -49,11 +63,5 @@ public class EstadoInsumoServiceImpl extends CRUDImpl<EstadoInsumo, Integer> imp
 		}
 		return data;
 	}
-
-	@Override
-	public List<ConsultaPdfDTO> listarVariablesPDF() {
-		// TODO Auto-generated method stub
-		return repo.listarVariablesPDF();
-	}
-
+	
 }
