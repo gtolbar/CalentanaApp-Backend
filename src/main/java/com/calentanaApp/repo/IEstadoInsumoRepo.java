@@ -15,4 +15,5 @@ public interface IEstadoInsumoRepo extends IGenericRepo<EstadoInsumo, Integer>{
 	@Query(value="SELECT ei.cantidad,ei.fecha FROM estado_insumos ei", nativeQuery = true)
 	List<Object[]> listarResumen();
 
+
 }

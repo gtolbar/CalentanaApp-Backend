@@ -33,5 +33,5 @@ public abstract class CRUDImpl<T,ID> implements ICRUD<T, ID>{
 	public void eliminar(ID id) throws Exception{	
 		getRepo().deleteById(id);
 	}
-
+	
 }
