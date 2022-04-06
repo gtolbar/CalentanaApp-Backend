@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,6 +46,7 @@ public class EstadoInsumoController {
 		return ResponseEntity.created(location).build();
 	}
 	
+	
 	@PutMapping
 	public ResponseEntity<EstadoInsumo> actualizar(@RequestBody EstadoInsumo p) throws Exception{
 		EstadoInsumo obj= service.registrar(p);
@@ -63,11 +63,6 @@ public class EstadoInsumoController {
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	} 
 	
-	@GetMapping(value = "/generarReporte", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-	public ResponseEntity<byte[]> generarReporte() {
-		byte[] data = null;
-		data = service.generarReporte();
-		return new ResponseEntity<byte[]>(data, HttpStatus.OK);
-	}
+
 	
 }
