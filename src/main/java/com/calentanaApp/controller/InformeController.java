@@ -1,5 +1,7 @@
 package com.calentanaApp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.calentanaApp.dto.ConsultaPdfDTO;
 import com.calentanaApp.service.IInformeService;
 
 
@@ -26,5 +29,10 @@ public class InformeController {
 		return new ResponseEntity<byte[]>(data, HttpStatus.OK);
 	}
 	
+	@GetMapping("/listar-resumen")
+	public ResponseEntity<List<ConsultaPdfDTO>> listarResumen(@RequestParam(value = "fechaInicio") String fechaInicio,@RequestParam(value = "fechaFinal") String fechaFinal){
+		List<ConsultaPdfDTO> data = service.listarResumen(fechaInicio,fechaFinal);
+		return new ResponseEntity<List<ConsultaPdfDTO>>(data, HttpStatus.OK);
+	}
 
 }
