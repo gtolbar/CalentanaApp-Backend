@@ -18,10 +18,37 @@ CREATE TABLE precio_ingresos(
     comentario VARCHAR(255)  
 );
 
+
 -- changeset gustavo:3
+-- comment: Se crea tabla DE ROL
+CREATE TABLE rol(
+	id INT PRIMARY KEY,
+    nombre VARCHAR(50),
+    descripcion VARCHAR(50)
+);
+
+-- changeset gustavo:4
+-- comment: Se crea tabla de USUARIO
+CREATE TABLE usuario(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(50) UNIQUE NOT NULL,
+    clave VARCHAR(255) NOT NULL,
+    estado bit(1) NOT NULL
+);
+
+-- changeset gustavo:5
+-- comment: Se crea tabla pivote usuario rol
+CREATE TABLE usuario_rol(
+	id_usuario INT NOT NULL,
+	id_rol INT NOT NULL,
+		FOREIGN KEY (id_usuario) REFERENCES usuario(id),
+        FOREIGN KEY (id_rol) REFERENCES rol(id)	
+    );
+
+-- changeset gustavo:6
 -- comment: Se crea tabla de estado de insumos primera vez
 CREATE TABLE estado_insumos(
-	id INT PRIMARY KEY  AUTO_INCREMENT,
+	id INT PRIMARY KEY AUTO_INCREMENT,
     cantidad INT UNSIGNED NOT NULL,
     fecha DATE NOT NULL,
     accion BOOLEAN,
@@ -33,18 +60,18 @@ CREATE TABLE estado_insumos(
         
 );
 
--- changeset gustavo:4
+-- changeset gustavo:7
 -- comment: Se insertan datos de prueba
 INSERT INTO insumos(proveedor,marca,producto,comentario) VALUE 
 ("Papa noel","saltin","galletas","Preuba 1"),("Supermercado","Doña arepa","harina","Prueba 2");
 
 
--- changeset gustavo:5
+-- changeset gustavo:8
 -- comment: Se insertan datos de prueba
 INSERT INTO precio_ingresos(precio,comentario) VALUE 
 ("500","Prueba 1"),("700","Prueba 1"),("800","Prueba 1"),("900","Prueba 1");
 
--- changeset gustavo:6
+-- changeset gustavo:9
 -- comment: Se insertan datos de prueba
 INSERT INTO estado_insumos(cantidad,fecha,accion,comentario,id_insumos,id_precio_ingresos) VALUE 
 ("30","2021-01-01",true,"Sin comentarios","1","1"),
@@ -160,4 +187,10 @@ INSERT INTO estado_insumos(cantidad,fecha,accion,comentario,id_insumos,id_precio
 ("50","2022-04-05",true,"Sin comentarios","1","2"),
 ("30","2022-04-06",false,"Sin comentarios","2","2");
 
+-- changeset gustavo:10
+-- comment: Se insertan roles
+INSERT INTO rol(id, nombre, descripcion) VALUES 
+("1", "ADMIN", "Administrador"),
+("2", "USER", "Usuario"),
+("3", "DBA", "Admin de bd");
 

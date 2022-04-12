@@ -1,4 +1,6 @@
 spring:
+  main:
+    allow-circular-references: true #Problemas con version a spring 2.6 se restablece el comportamiento de spring 2.5
   jpa:
     database: MYSQL
     show-sql: true
